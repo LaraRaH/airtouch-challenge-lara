@@ -1,8 +1,8 @@
 {% extends 'core/base.html' %}
 {% block content %}
-<h2>¿Eliminar {{ type }}: "{{ obj }}"?</h2>
+<h2>Are you sure you want to delete this {{ type }}: "{{ obj }}"?</h2>
 <form method="post">{% csrf_token %}
-    <button type="submit" class="btn btn-danger">Sí, eliminar</button>
-    <a href="{% url 'ni_list' %}">Cancelar</a>
+    <button type="submit" class="btn btn-danger">Yes, delete</button>
+    <a href="javascript:history.back()" class="btn btn-secondary">Cancel</a>
 </form>
 {% endblock %}

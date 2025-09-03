@@ -58,7 +58,7 @@ ROOT_URLCONF = "airtouch_challenge.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],   # o [BASE_DIR / "templates"] si quieres una carpeta global
+        "DIRS": [],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -80,11 +80,11 @@ WSGI_APPLICATION = "airtouch_challenge.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "airtouch",  # tu base creada en MySQL Workbench
-        "USER": "root",           # o el usuario que uses
+        "NAME": "airtouch",
+        "USER": "root",
         "PASSWORD": "root",
-        "HOST": "localhost",      # si es local
-        "PORT": "3306",           # puerto por defecto
+        "HOST": "localhost",
+        "PORT": "3306",
     }
 }
 
@@ -132,5 +132,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 LOGIN_URL = "login"
-LOGIN_REDIRECT_URL = "/"  # a dónde redirigir después de login
+LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "login"

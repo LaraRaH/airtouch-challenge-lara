@@ -96,8 +96,25 @@ def ni_delete(request, pk):
 # Product Views.
 @login_required
 def product_list(request):
-    products = Product.objects.all().order_by("name")
-    return render(request, "core/product_list.html", {"products": products})
+    qs = Product.objects.all().order_by("name")
+
+    name = request.GET.get("name")
+    status = request.GET.get("status")
+
+    if name:
+        qs = qs.filter(name__icontains=name)
+    if status in ("ACTIVE", "INACTIVE"):
+        qs = qs.filter(status=status)
+
+    context = {
+        "products": qs,
+        "name": name or "",
+        "status": status or "",
+        # ✅ flags para el template (evitamos comparaciones allí)
+        "active_selected": status == "ACTIVE",
+        "inactive_selected": status == "INACTIVE",
+    }
+    return render(request, "core/product_list.html", context)
 
 
 @login_required

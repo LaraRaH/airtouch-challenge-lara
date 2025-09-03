@@ -1,9 +1,26 @@
 {% extends 'core/base.html' %}
 {% block content %}
 <h1>Products</h1>
-<div class="mb-3">
-    <a class="btn btn-primary" href="{% url 'product_create' %}">Create product</a>
-</div>
+
+<form method="get" class="row g-2 mb-3">
+    <div class="col-auto">
+        <input type="text" name="name" class="form-control" placeholder="Search by name" value="{{ name }}">
+    </div>
+    <div class="col-auto">
+        <select name="status" class="form-select">
+            <option value="">-- Status --</option>
+            <option value="ACTIVE" {% if active_selected %}selected{% endif %}>ACTIVE</option>
+            <option value="INACTIVE" {% if inactive_selected %}selected{% endif %}>INACTIVE</option>
+        </select>
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-outline-primary">Filter</button>
+        <a href="{% url 'product_list' %}" class="btn btn-secondary">Reset</a>
+    </div>
+    <div class="col-auto">
+        <a class="btn btn-primary" href="{% url 'product_create' %}">Create product</a>
+    </div>
+</form>
 
 <table class="table">
     <thead>

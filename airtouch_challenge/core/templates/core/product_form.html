@@ -1,0 +1,14 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h1>{% if obj %}Edit{% else %}Create{% endif %} product</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-success">Save</button>
+    <a class="btn btn-secondary" href="{% url 'product_list' %}">Cancel</a>
+</form>
+<p class="text-muted mt-3">
+    Enter <strong>nutritional_values</strong> as valid JSON. Example:<br>
+    <code>{"Weight (g)": 159, "Energetic value (Kcal)": 389.6, "Proteins (g)": 5.4}</code>
+</p>
+{% endblock %}

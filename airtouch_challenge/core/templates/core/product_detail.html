@@ -1,0 +1,26 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h1>{{ obj.name }}</h1>
+<p><em>Status:</em> {{ obj.status }}</p>
+<p>{{ obj.description|default:"(No description)" }}</p>
+
+<h3>Nutritional values</h3>
+{% if obj.nutritional_values %}
+<ul>
+    {% for k, v in obj.nutritional_values.items %}
+    <li><strong>{{ k }}</strong>: {{ v }}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>-</p>
+{% endif %}
+
+<p class="mt-3">
+    <a class="btn btn-outline-primary" href="{% url 'product_update' obj.pk %}">Edit</a>
+</p>
+<form method="post" action="{% url 'product_delete' obj.pk %}">
+    {% csrf_token %}
+    <button class="btn btn-danger">Delete</button>
+</form>
+<a class="d-block mt-2" href="{% url 'product_list' %}">Back to list</a>
+{% endblock %}

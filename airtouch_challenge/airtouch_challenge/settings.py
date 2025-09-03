@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "core"
 ]
 
 MIDDLEWARE = [
@@ -61,6 +62,7 @@ TEMPLATES = [
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
+                "django.template.context_processors.debug",
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
@@ -78,11 +80,11 @@ WSGI_APPLICATION = "airtouch_challenge.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "airtouch",  # tu base creada en MySQL Workbench
-        "USER": "root",           # o el usuario que uses
+        "NAME": "airtouch",
+        "USER": "root",
         "PASSWORD": "root",
-        "HOST": "localhost",      # si es local
-        "PORT": "3306",           # puerto por defecto
+        "HOST": "localhost",
+        "PORT": "3306",
     }
 }
 
@@ -127,3 +129,8 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = "home"
+LOGOUT_REDIRECT_URL = "login"

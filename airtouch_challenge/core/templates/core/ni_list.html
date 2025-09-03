@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h1>Nutritional Information</h1>
+<a href="{% url 'ni_create' %}" class="btn btn-primary">Add</a>
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Unit</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for n in items %}
+        <tr>
+            <td>{{ n.name }}</td>
+            <td>{{ n.unit }}</td>
+            <td>
+                <a href="{% url 'ni_detail' n.pk %}">Detail</a> |
+                <a href="{% url 'ni_update' n.pk %}">Edit</a> |
+                <a href="{% url 'ni_delete' n.pk %}">Delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">No registers</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
